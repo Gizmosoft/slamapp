@@ -25,4 +25,8 @@ public class AuthController {
         System.out.println("I have heard from service, model and repository layers that the user is added to DB");
         return ResponseEntity.ok("Hello from slam App");
     }
+
+    public boolean isUserAuthenticated(OAuth2AuthenticationToken oAuth2AuthenticationToken){
+        return oAuth2AuthenticationToken.isAuthenticated();
+    }
 }
