@@ -14,12 +14,17 @@ public class SecurityAdapter {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http
             .csrf()
-            .disable()
+                .disable()
             .authorizeHttpRequests()
-            .anyRequest()
-            .authenticated()
+                .requestMatchers("/**")
+                .permitAll()
+                .and()
+            .authorizeHttpRequests()
+            .anyRequest().authenticated()
             .and()
-            .oauth2Login()
+            .oauth2Login().permitAll()
+            .and().
+            logout().logoutSuccessUrl("/");
             ;
         return http.build();
     }
