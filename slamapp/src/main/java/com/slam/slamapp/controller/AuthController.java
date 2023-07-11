@@ -7,6 +7,7 @@ import org.springframework.security.oauth2.client.authentication.OAuth2Authentic
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
@@ -18,12 +19,18 @@ public class AuthController {
     UserData userData;
 
     @GetMapping
-    public ResponseEntity<String> authenticateUser(OAuth2AuthenticationToken oAuth2AuthenticationToken){
-        Map<String, Object> userMap = oAuth2AuthenticationToken.getPrincipal().getAttributes();
-        System.out.println("Sending user from AuthController to Service layer to get stored in DB");
-        userData.addUserData(userMap);
-        System.out.println("I have heard from service, model and repository layers that the user is added to DB");
-        return ResponseEntity.ok("Hello from slam App");
+    public ModelAndView authenticateUser(OAuth2AuthenticationToken oAuth2AuthenticationToken){
+        if(oAuth2AuthenticationToken != null){
+            Map<String, Object> userMap = oAuth2AuthenticationToken.getPrincipal().getAttributes();
+            System.out.println("Sending user from AuthController to Service layer to get stored in DB");
+            userData.addUserData(userMap);
+            System.out.println("I have heard from service, model and repository layers that the user is added to DB");
+//        ResponseEntity.ok("Hello from slam App");
+        }
+        // redirecting to the homepage
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("home");
+        return modelAndView;
     }
 
     public boolean isUserAuthenticated(OAuth2AuthenticationToken oAuth2AuthenticationToken){
