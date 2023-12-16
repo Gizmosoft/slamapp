@@ -1,0 +1,27 @@
+server:
+  port: 8081
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 401999367686-7ijdsf0oa095s9fgdu47fse108bb0gka.apps.googleusercontent.com
+            clientSecret: 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
+            redirectUri: http://localhost:8081/auth
+
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: jdbc:postgresql://localhost:5432/slamapp-db
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+
+  mvc:
+    view:
+      suffix: .html
