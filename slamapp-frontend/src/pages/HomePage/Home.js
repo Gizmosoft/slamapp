@@ -9,7 +9,7 @@ export const Home = () => {
     <div>
         
         <Navbar />
-        {/* <Login isShowLogin={isShowLogin}/> */}
+        
     </div>
   )
 }

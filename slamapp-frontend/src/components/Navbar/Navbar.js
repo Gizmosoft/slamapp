@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
+import { Login } from "../Auth/Login";
 
 export const Navbar = () => {
     const [isShowLogin, setIsShowLogin] = useState(true);
@@ -26,10 +27,14 @@ export const Navbar = () => {
             <Link to={`/`}>Home</Link>
           </div>
           <div className="nav-links" id="discover-link">
-            <Link to={`/discover`}>Discover</Link>
+            <Link to={`/`}>Blog</Link>
+          </div>
+          <div className="nav-links" id="discover-link">
+            <Link to={`/`}>Community</Link>
           </div>
 
           <button onClick={handleLoginClick} className="nav-links loginicon">Login</button>
+          <Login isShowLogin={isShowLogin}/>
           {/* Your other content */}
           {/* <div className="nav-links" id="profile-container">
               <div id="profile" className="nav-links">
