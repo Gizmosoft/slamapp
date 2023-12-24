@@ -5,7 +5,7 @@ import { jwtDecode } from "jwt-decode";
 
 const GoogleAuth = () => {
     const navigate = useNavigate()
-    const handleLoginSuccess = async (credentialResponse) => {
+    const handleLoginSuccess = (credentialResponse) => {
         const userCredentials = jwtDecode(credentialResponse.credential)
         const userObject = JSON.parse(JSON.stringify(userCredentials))
 
