@@ -1,7 +1,6 @@
 package com.slamapp.slamappbackend.controllers;
 
 import com.slamapp.slamappbackend.models.User;
-import com.slamapp.slamappbackend.requests.UserRequest;
 import com.slamapp.slamappbackend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +14,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    // Gets user object from OAuth in UI and adds user to the DB
     @PostMapping("/oauth")
     public ResponseEntity<String> authenticate(@RequestBody User user) {
         try {
@@ -33,5 +33,10 @@ public class UserController {
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/home")
+    public ResponseEntity<String> home(){
+        return new ResponseEntity<String>("Welcome Home!!!", HttpStatus.OK);
     }
 }
